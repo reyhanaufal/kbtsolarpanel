@@ -187,6 +187,12 @@ header {
 }
 
 /* --- Graph Section --- */
+#renewableChart {
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
+    padding: 15px;
+}
 .graph-section {
     text-align: center;
     background-color: var(--light-bg);
