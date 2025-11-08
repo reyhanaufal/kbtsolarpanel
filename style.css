@@ -1,0 +1,714 @@
+/* --- CSS Variables & Reset --- */
+:root {
+    --primary-color: #10b981;
+    --secondary-color: #065f46;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --white: #ffffff;
+    --light-bg: #f9fafb;
+    --max-width: 1200px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+section {
+    padding: 80px 0;
+}
+
+/* --- Header / Navbar --- */
+header {
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links .btn-nav {
+    padding: 10px 24px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 30px;
+}
+
+.nav-links .btn-nav:hover {
+    color: var(--white);
+    background-color: var(--secondary-color);
+}
+
+.hamburger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+/* --- Hero Section --- */
+.hero {
+    padding: 120px 0 100px;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    color: var(--text-light);
+    margin-bottom: 35px;
+    font-size: 18px;
+    max-width: 500px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.hero-image {
+    flex: 1;
+}
+
+.hero-image img {
+    width: 100%;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* --- Graph Section --- */
+.graph-section {
+    text-align: center;
+    background-color: var(--light-bg);
+}
+
+.graph-section h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.graph-container {
+    max-width: 800px;
+    margin: 40px auto 0;
+}
+
+.graph-placeholder img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.graph-container small {
+    display: block;
+    margin-top: 20px;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+/* --- Benefits Section --- */
+.benefits {
+    text-align: center;
+}
+
+.benefits h2 {
+    font-size: 36px;
+    margin-bottom: 60px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    text-align: left;
+}
+
+.benefit-card {
+    padding: 35px;
+    border-radius: 24px;
+    background: var(--white);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
+    border-color: var(--primary-color);
+}
+
+.benefit-icon {
+    font-size: 40px;
+    margin-bottom: 25px;
+    display: inline-block;
+    padding: 15px;
+    background: #ecfdf5;
+    border-radius: 16px;
+}
+
+.benefit-card h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.benefit-card p {
+    color: var(--text-light);
+}
+
+/* --- About Section --- */
+.about {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+.about-content {
+    flex: 1;
+}
+
+.about h2 {
+    color: var(--white);
+    font-size: 42px;
+    margin-bottom: 25px;
+}
+
+.about p {
+    opacity: 0.9;
+    margin-bottom: 40px;
+    font-size: 18px;
+}
+
+.about-stats {
+    display: flex;
+    gap: 50px;
+}
+
+.about-stats strong {
+    font-size: 36px;
+    display: block;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.about-stats span {
+    opacity: 0.8;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Services Section --- */
+.services {
+    text-align: center;
+    background-color: var(--light-bg);
+}
+
+.services h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    max-width: 600px;
+    margin: 0 auto 60px;
+    color: var(--text-light);
+    font-size: 18px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-img {
+    height: 220px;
+    background-color: #e5e7eb;
+}
+
+.service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.service-content {
+    padding: 30px;
+}
+
+.service-content h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.service-content p {
+    margin-bottom: 25px;
+    color: var(--text-light);
+}
+
+.learn-more {
+    color: var(--primary-color);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.3s;
+}
+
+.learn-more:hover {
+    gap: 12px;
+}
+
+/* --- Stats Section --- */
+/* .stats {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 80px 0;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.stat-item h3 {
+    font-size: 56px;
+    color: var(--white);
+    margin-bottom: 5px;
+}
+
+.stat-item p {
+    font-weight: 600;
+    opacity: 0.9;
+} */
+
+/* --- Portfolio Marquee Section --- */
+.portfolio {
+    text-align: center;
+    background-color: var(--white);
+    padding: 80px 0;
+    overflow: hidden; /* Sembunyikan scrollbar horizontal halaman */
+}
+
+.portfolio h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Container utama marquee */
+.marquee {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    user-select: none; /* Mencegah seleksi teks/gambar saat dragging (opsional) */
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); /* Efek fade di kiri & kanan */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+/* Track yang bergerak */
+.marquee-content {
+    display: flex;
+    gap: 30px; /* Jarak antar foto */
+    animation: scroll 40s linear infinite; /* Kecepatan animasi (40s), sesuaikan jika ingin lebih cepat/lambat */
+    width: max-content; /* Agar lebarnya menyesuaikan konten */
+    padding-left: 30px; /* Padding awal agar tidak langsung menempel */
+}
+
+/* Pause animasi saat hover (opsional, bagus untuk UX) */
+.marquee:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+/* Item individual proyek */
+.project-item {
+    flex-shrink: 0; /* Mencegah item mengecil */
+    width: 350px; /* Lebar tetap untuk setiap kartu proyek */
+    height: 280px; /* Tinggi tetap agar seragam */
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-5px) scale(1.02); /* Efek sedikit membesar saat hover */
+}
+
+/* Penanganan Gambar (Portrait/Landscape/Square) */
+.project-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* KUNCI: Memastikan gambar memenuhi container tanpa distorsi, terpotong jika perlu */
+    object-position: center; /* Memastikan fokus gambar tetap di tengah */
+    display: block;
+}
+
+/* Info proyek di atas gambar */
+.project-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); /* Gradient hitam agar teks terbaca */
+    color: var(--white);
+    font-weight: 600;
+    font-size: 16px;
+    text-align: left;
+    transform: translateY(100%); /* Sembunyikan info secara default */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Tampilkan info saat hover */
+.project-item:hover .project-info {
+    transform: translateY(0);
+}
+
+/* Keyframes untuk animasi berjalan */
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        /* Geser sejauh -50% karena kita punya 2 set konten identik.
+           Setelah mencapai 50%, animasi akan loop mulus kembali ke 0%. */
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsif untuk marquee */
+@media (max-width: 768px) {
+    .project-item {
+        width: 280px; /* Ukuran kartu lebih kecil di mobile */
+        height: 220px;
+    }
+    
+    .marquee-content {
+        gap: 15px;
+        animation-duration: 30s; /* Sedikit lebih cepat di layar kecil agar tidak terasa terlalu lambat */
+    }
+}
+
+
+/* --- Testimonials --- */
+.testimonials {
+    text-align: center;
+}
+
+.testimonials h2 {
+    margin-bottom: 60px;
+    font-size: 36px;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    text-align: left;
+}
+
+.testimonial-card {
+    background: var(--light-bg);
+    padding: 40px;
+    border-radius: 24px;
+    position: relative;
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 80px;
+    color: var(--primary-color);
+    opacity: 0.1;
+    font-family: serif;
+}
+
+.stars {
+    color: #FFB020;
+    margin-bottom: 20px;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.testimonial-card p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-dark);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author {
+    margin-top: 25px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* --- Footer --- */
+footer {
+    background: #111827;
+    color: #9ca3af;
+    padding: 80px 0 30px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    gap: 50px;
+    margin-bottom: 70px;
+}
+
+.footer-logo {
+    color: var(--white);
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.footer-about p {
+    line-height: 1.7;
+}
+
+.footer-links h4, .footer-newsletter h4 {
+    color: var(--white);
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 15px;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    transition: 0.3s;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: 2px solid #374151;
+    background: #1f2937;
+    color: var(--white);
+    outline: none;
+    transition: 0.3s;
+}
+
+.newsletter-form input:focus {
+    border-color: var(--primary-color);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #1f2937;
+    font-size: 14px;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .hero h1 { font-size: 42px; }
+    .about h2 { font-size: 36px; }
+    .hero-container, .about-container { gap: 40px; }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        clip-path: circle(0% at 100% 0);
+        transition: all 0.5s ease-in-out;
+        gap: 20px;
+    }
+
+    .nav-links.active {
+        clip-path: circle(150% at 100% 0);
+    }
+
+    .hamburger { display: block; }
+
+    .hero-container, .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero { padding-top: 60px; }
+    .hero h1 { font-size: 36px; }
+    .hero p, .section-subtitle { margin-left: auto; margin-right: auto; }
+    .hero-buttons { justify-content: center; }
+
+    .about-stats { justify-content: center; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+}
