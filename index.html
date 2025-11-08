@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentary - Renewable Energy</title>
     <link rel="stylesheet" href="style.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -50,7 +51,7 @@
             <p>National renewable energy capacity additions</p>
             <div class="graph-container">
                 <div class="graph-placeholder">
-                    <img src="https://placehold.co/800x300/e2e8f0/1f2937?text=Graph+Placeholder:+Renewable+Boom" alt="Graph">
+                    <canvas id="renewableChart" style="width:100%; max-width:800px; height:400px;"></canvas>
                 </div>
                 <small>Source: International Energy Agency</small>
             </div>
