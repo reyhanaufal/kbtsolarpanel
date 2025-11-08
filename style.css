@@ -405,143 +405,208 @@ header {
     gap: 12px;
 }
 
-/* --- Stats Section --- */
-/* .stats {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 80px 0;
-}
 
-.stats-grid {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    flex-wrap: wrap;
-    gap: 40px;
-}
-
-.stat-item h3 {
-    font-size: 56px;
-    color: var(--white);
-    margin-bottom: 5px;
-}
-
-.stat-item p {
-    font-weight: 600;
-    opacity: 0.9;
-} */
-
-/* --- Portfolio Marquee Section --- */
+ /* --- Portfolio Marquee Section (Revisi Manual Scroll) --- */
 .portfolio {
     text-align: center;
     background-color: var(--white);
     padding: 80px 0;
-    overflow: hidden; /* Sembunyikan scrollbar horizontal halaman */
 }
 
-.portfolio h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.container-fluid {
+/* [WADAH SCROLL UTAMA] */
+/* Area ini yang akan memiliki scrollbar (meski disembunyikan) dan bisa digeser */
+.marquee-container {
     width: 100%;
-    padding-left: 0;
-    padding-right: 0;
+    /* Mengizinkan scroll ke samping jika kontennya lebih lebar dari layar */
+    overflow-x: auto;
+    /* Mencegah scroll vertikal yang tidak diinginkan */
+    overflow-y: hidden;
+    /* Membuat scroll di perangkat layar sentuh (iOS/Android) terasa halus (momentum scrolling) */
+    -webkit-overflow-scrolling: touch;
+    padding: 20px 0;
+    /* Mengubah kursor mouse menjadi icon 'tangan terbuka' untuk memberi petunjuk bisa digeser */
+    cursor: grab;
+    /* Teknik menyembunyikan scrollbar agar tampilan lebih bersih: */
+    scrollbar-width: none; /* Untuk browser Firefox */
+    -ms-overflow-style: none;  /* Untuk Internet Explorer 10+ dan Edge lama */
 }
 
-/* Container utama marquee */
-.marquee {
-    display: flex;
-    width: 100%;
-    overflow: hidden;
-    user-select: none; /* Mencegah seleksi teks/gambar saat dragging (opsional) */
-    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); /* Efek fade di kiri & kanan */
-    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+/* Lanjutan teknik menyembunyikan scrollbar untuk browser berbasis WebKit (Chrome, Safari, Edge baru) */
+.marquee-container::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none; /* Memastikan benar-benar hilang */
 }
 
-/* Track yang bergerak */
+/* Saat user sedang menekan mouse (klik & tahan) untuk menggeser */
+.marquee-container:active {
+    /* Mengubah kursor menjadi 'tangan menggenggam' */
+    cursor: grabbing;
+}
+
+/* [KONTEN DI DALAM WADAH SCROLL] */
 .marquee-content {
-    display: flex;
-    gap: 30px; /* Jarak antar foto */
-    animation: scroll 40s linear infinite; /* Kecepatan animasi (40s), sesuaikan jika ingin lebih cepat/lambat */
-    width: max-content; /* Agar lebarnya menyesuaikan konten */
-    padding-left: 30px; /* Padding awal agar tidak langsung menempel */
+    display: flex; /* Menyusun item proyek secara horizontal (berjajar ke samping) */
+    gap: 20px; /* Jarak antar item proyek */
+    padding-left: 20px; /* Ruang kosong di awal agar item pertama tidak mepet kiri */
+    padding-right: 20px; /* Ruang kosong di akhir agar item terakhir tidak terpotong */
+    width: max-content; /* PENTING: Memaksa lebar wadah ini mengikuti total lebar semua isinya */
 }
 
-/* Pause animasi saat hover (opsional, bagus untuk UX) */
-.marquee:hover .marquee-content {
-    animation-play-state: paused;
-}
-
-/* Item individual proyek */
+/* [GAYA ITEM PROYEK INDIVIDUAL] */
 .project-item {
-    flex-shrink: 0; /* Mencegah item mengecil */
-    width: 350px; /* Lebar tetap untuk setiap kartu proyek */
-    height: 280px; /* Tinggi tetap agar seragam */
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    /* Mencegah item mengecil (gepeng) jika wadahnya sempit. Item akan tetap pada ukuran aslinya. */
+    flex-shrink: 0;
+    width: 320px; /* Lebar tetap setiap kartu proyek */
+    height: 240px; /* Tinggi tetap setiap kartu proyek */
+    position: relative; /* Diperlukan agar 'project-info' bisa diposisikan absolut di dalamnya */
+    border-radius: 12px; /* Sudut melengkung */
+    overflow: hidden; /* Memotong gambar jika ada bagian yang keluar dari sudut melengkung */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Bayangan halus di bawah kartu */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animasi halus untuk efek hover */
+    cursor: pointer; /* Mengubah kursor jadi telunjuk saat diarahkan, menandakan bisa diklik */
 }
 
+/* Efek saat mouse berada di atas item proyek */
 .project-item:hover {
-    transform: translateY(-5px) scale(1.02); /* Efek sedikit membesar saat hover */
+    transform: translateY(-5px); /* Kartu naik sedikit (5px) */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* Bayangan menjadi lebih besar dan tegas */
 }
 
-/* Penanganan Gambar (Portrait/Landscape/Square) */
 .project-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* KUNCI: Memastikan gambar memenuhi container tanpa distorsi, terpotong jika perlu */
-    object-position: center; /* Memastikan fokus gambar tetap di tengah */
-    display: block;
+    /* KUNCI AGAR GAMBAR RAPI: Memastikan gambar memenuhi kotak tanpa terdistorsi (mungkin terpotong sedikit) */
+    object-fit: cover;
+    display: block; /* Menghilangkan celah kecil di bawah gambar yang kadang muncul */
 }
 
-/* Info proyek di atas gambar */
+/* [INFO PROYEK (TEKS DI ATAS GAMBAR)] */
 .project-info {
-    position: absolute;
-    bottom: 0;
+    position: absolute; /* Diposisikan bebas di dalam .project-item */
+    bottom: 0; /* Menempel di bagian bawah */
     left: 0;
     right: 0;
-    padding: 15px 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); /* Gradient hitam agar teks terbaca */
+    padding: 15px;
+    /* Latar belakang gradasi hitam transparan agar teks putih mudah dibaca di atas gambar apa pun */
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
     color: var(--white);
     font-weight: 600;
-    font-size: 16px;
-    text-align: left;
-    transform: translateY(100%); /* Sembunyikan info secara default */
-    transition: transform 0.3s ease-in-out;
+    /* MULAI DENGAN TERSEMBUNYI: Digeser ke bawah sejauh 100% tingginya sendiri sehingga keluar dari kartu */
+    transform: translateY(100%);
+    /* Transisi halus saat muncul/hilang */
+    transition: transform 0.3s ease;
 }
 
-/* Tampilkan info saat hover */
+/* Saat item proyek di-hover, info proyek dimunculkan kembali ke posisi semula (translateY 0) */
 .project-item:hover .project-info {
     transform: translateY(0);
 }
 
-/* Keyframes untuk animasi berjalan */
-@keyframes scroll {
+/* --- Modal Pop-up Styles --- */
+/* [WADAH GELAP PENUTUP LAYAR] */
+.modal {
+    display: none; /* Tersembunyi secara default saat halaman dimuat */
+    position: fixed; /* Tetap di tempat meskipun halaman di-scroll */
+    z-index: 2000; /* Pastikan muncul DI ATAS semua elemen lain (header biasanya z-index 1000) */
+    left: 0;
+    top: 0;
+    width: 100%; /* Lebar penuh layar */
+    height: 100%; /* Tinggi penuh layar */
+    overflow: auto; /* Izinkan scroll jika konten modal terlalu panjang untuk layar */
+    /* Latar belakang hitam semi-transparan (tingkat kegelapan 0.8 dari 1) */
+    background-color: rgba(0,0,0,0.8);
+    /* Efek blur pada latar belakang di belakang modal (opsional, tapi terlihat modern) */
+    backdrop-filter: blur(5px);
+    /* Menggunakan flexbox untuk memusatkan konten modal tepat di tengah layar */
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Jarak aman dari tepi layar */
+}
+
+/* [KOTAK KONTEN MODAL] */
+.modal-content {
+    background-color: var(--white);
+    margin: auto; /* Membantu pemusatan jika flexbox tidak didukung (fallback) */
+    padding: 0;
+    border-radius: 16px;
+    max-width: 800px; /* Lebar maksimal kotak modal */
+    width: 100%; /* Lebar fleksibel hingga batas maksimal */
+    overflow: hidden; /* Agar sudut gambar ikut melengkung mengikuti border-radius */
+    position: relative; /* Agar tombol 'close' bisa diposisikan absolut relatif terhadap kotak ini */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* Bayangan besar agar terlihat melayang */
+    /* Animasi saat modal muncul (didefinisikan di @keyframes modalFadeIn di bawah) */
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Definisi animasi munculnya modal */
+@keyframes modalFadeIn {
     from {
-        transform: translateX(0);
+        opacity: 0; /* Mulai dari transparan */
+        transform: translateY(-20px); /* Mulai sedikit dari atas */
     }
     to {
-        /* Geser sejauh -50% karena kita punya 2 set konten identik.
-           Setelah mencapai 50%, animasi akan loop mulus kembali ke 0%. */
-        transform: translateX(-50%);
+        opacity: 1; /* Akhirnya terlihat penuh */
+        transform: translateY(0); /* Akhirnya di posisi normal */
     }
 }
 
-/* Responsif untuk marquee */
+/* [TOMBOL 'X' TUTUP MODAL] */
+.close-modal {
+    color: var(--white); /* Warna putih agar kontras dengan gambar atau latar gelap */
+    position: absolute; /* Diposisikan bebas */
+    top: 15px; /* Jarak dari atas kotak modal */
+    right: 20px; /* Jarak dari kanan kotak modal */
+    font-size: 35px; /* Ukuran besar agar mudah diklik/disentuh */
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10; /* Pastikan berada di atas gambar modal */
+    /* Memberi bayangan hitam pada teks agar tetap terlihat jika gambar di belakangnya berwarna terang */
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    transition: color 0.3s;
+    line-height: 1; /* Mencegah spasi vertikal tambahan yang tidak perlu */
+}
+
+.close-modal:hover {
+    color: var(--primary-color); /* Berubah warna saat di-hover */
+}
+
+/* Gambar di dalam modal */
+#modalImage {
+    width: 100%;
+    max-height: 60vh; /* Batasi tinggi gambar maksimal 60% dari tinggi layar agar deskripsi di bawahnya tetap terlihat tanpa scroll jauh */
+    object-fit: cover; /* Memastikan gambar memenuhi area tanpa gepeng */
+    display: block;
+}
+
+/* Area teks (judul & deskripsi) di dalam modal */
+.modal-text {
+    padding: 25px;
+    text-align: left;
+}
+
+#modalTitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: var(--secondary-color); /* Menggunakan warna sekunder dari tema */
+}
+
+#modalDescription {
+    font-size: 16px;
+    line-height: 1.6; /* Jarak antar baris agar nyaman dibaca */
+    color: var(--text-dark);
+}
+
+/* [RESPONSIF UNTUK LAYAR KECIL (MOBILE)] */
 @media (max-width: 768px) {
-    .project-item {
-        width: 280px; /* Ukuran kartu lebih kecil di mobile */
-        height: 220px;
+    .modal-content {
+        width: 95%; /* Modal hampir memenuhi lebar layar di HP */
     }
-    
-    .marquee-content {
-        gap: 15px;
-        animation-duration: 30s; /* Sedikit lebih cepat di layar kecil agar tidak terasa terlalu lambat */
+    #modalImage {
+        max-height: 40vh; /* Gambar lebih pendek di HP agar teks lebih banyak terlihat */
+    }
+    #modalTitle {
+        font-size: 20px; /* Ukuran font judul sedikit mengecil */
     }
 }
 

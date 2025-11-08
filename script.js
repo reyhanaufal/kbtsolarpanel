@@ -20,22 +20,183 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// Smooth Scroll for Anchor Links (Backup for older browsers)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
 
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            e.preventDefault();
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
+// =========================================
+// LOGIKA PORTFOLIO MARQUEE & MODAL (FINAL ROBUST VERSION)
+// =========================================
+
+const marqueeContainer = document.getElementById('marqueeContainer');
+const marqueeContent = document.getElementById('marqueeContent');
+
+let isDown = false;
+let startX;
+let scrollLeftVal;
+// KECEPATAN: Sesuaikan nilai ini (misal 0.3 untuk lebih lambat, 1 untuk normal)
+let autoScrollSpeed = 0.5;
+
+let autoScrollId = null;
+let isAutoScrolling = false;
+
+// --- [FUNGSI 1: AUTO-SCROLL LEBIH MULUS] ---
+function startAutoScroll() {
+    if (isAutoScrolling) return; // Mencegah duplikasi animasi
+    isAutoScrolling = true;
+    loop(); // Memulai loop
+}
+
+function loop() {
+    if (!isAutoScrolling) return;
+
+    // Gerakkan scroll
+    marqueeContainer.scrollLeft += autoScrollSpeed;
+
+    // [LOGIKA RESET YANG LEBIH MULUS]
+    // Kita asumsikan konten diduplikasi menjadi 2 bagian yang identik.
+    // Saat scroll mencapai setengah dari total lebar konten, kita mundurkan posisinya
+    // tepat setengahnya. Ini lebih mulus daripada menunggu sampai ujung benar-benar mentok.
+    const halfWidth = marqueeContent.scrollWidth / 2;
+    if (marqueeContainer.scrollLeft >= halfWidth) {
+        // Alih-alih '= 0', kita kurangi dengan halfWidth agar sisa desimal gerakan tetap tersimpan
+        // Ini mencegah lompatan mikro (jitter)
+         marqueeContainer.scrollLeft -= halfWidth;
+    }
+
+    autoScrollId = requestAnimationFrame(loop);
+}
+
+function stopAutoScroll() {
+    isAutoScrolling = false;
+    if (autoScrollId) {
+        cancelAnimationFrame(autoScrollId);
+        autoScrollId = null;
+    }
+}
+
+// --- [FUNGSI 2: INTERAKSI USER (DRAG & HOVER)] ---
+
+// Mouse Events
+marqueeContainer.addEventListener('mousedown', (e) => {
+    isDown = true;
+    marqueeContainer.classList.add('active');
+    startX = e.pageX - marqueeContainer.offsetLeft;
+    scrollLeftVal = marqueeContainer.scrollLeft;
+    stopAutoScroll(); // Stop saat mulai drag
 });
+
+marqueeContainer.addEventListener('mouseup', () => {
+    isDown = false;
+    marqueeContainer.classList.remove('active');
+    // Cek apakah mouse masih di atas container setelah lepas klik
+    if (!marqueeContainer.matches(':hover')) {
+         startAutoScroll();
+    }
+});
+
+marqueeContainer.addEventListener('mouseleave', () => {
+    isDown = false;
+    marqueeContainer.classList.remove('active');
+    startAutoScroll(); // Lanjut scroll saat mouse pergi
+});
+
+marqueeContainer.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - marqueeContainer.offsetLeft;
+    const walk = (x - startX) * 2; // Kecepatan drag manual
+    marqueeContainer.scrollLeft = scrollLeftVal - walk;
+});
+
+// [FITUR PAUSE SAAT HOVER]
+// Menggunakan 'mouseenter' pada container utama agar lebih stabil
+marqueeContainer.addEventListener('mouseenter', () => {
+    if (!isDown) stopAutoScroll();
+});
+
+// Touch Events (HP/Tablet)
+marqueeContainer.addEventListener('touchstart', stopAutoScroll, { passive: true });
+marqueeContainer.addEventListener('touchend', () => {
+    // Jeda sedikit sebelum lanjut agar smooth setelah swipe
+    setTimeout(startAutoScroll, 1000);
+});
+
+// --- [FUNGSI 3: VISIBILITY API (PENTING UNTUK MENCEGAH BLINK)] ---
+// Menghentikan animasi jika user pindah tab, mencegah browser "menumpuk" frame animasi.
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        stopAutoScroll();
+    } else {
+        // Hanya lanjutkan jika tidak ada modal yang terbuka
+        if (modal.style.display !== "flex") {
+            startAutoScroll();
+        }
+    }
+});
+
+// Mulai pertama kali
+startAutoScroll();
+
+
+// =========================================
+// LOGIKA MODAL POP-UP
+// =========================================
+
+const modal = document.getElementById('projectModal');
+const modalImg = document.getElementById('modalImage');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDescription');
+
+function openModal(imgSrc, title, desc) {
+    modal.style.display = "flex";
+    modalImg.src = imgSrc;
+    modalTitle.textContent = title;
+    modalDesc.textContent = desc;
+    
+    stopAutoScroll(); // Pastikan animasi berhenti total saat modal buka
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    modal.style.display = "none";
+    modalImg.src = "";
+    
+    startAutoScroll(); // Lanjutkan animasi
+    document.body.style.overflow = 'auto';
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+// [EVENT LISTENER TOMBOL KEYBOARD]
+// Menambahkan fungsi untuk mendeteksi jika tombol ditekan di seluruh halaman
+document.addEventListener('keydown', function(event) {
+    // Mengecek apakah tombol yang ditekan adalah 'Escape' (atau 'Esc' untuk browser lama)
+    // DAN apakah modal sedang terbuka (display-nya 'flex')
+    if ((event.key === 'Escape' || event.key === 'Esc') && modal.style.display === 'flex') {
+        closeModal(); // Panggil fungsi penutup modal yang sama
+    }
+});
+
+
+// // Smooth Scroll for Anchor Links (Backup for older browsers)
+// document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+//     anchor.addEventListener('click', function (e) {
+//         const targetId = this.getAttribute('href');
+//         if (targetId === '#') return;
+
+//         const targetElement = document.querySelector(targetId);
+//         if (targetElement) {
+//             e.preventDefault();
+//             targetElement.scrollIntoView({
+//                 behavior: 'smooth',
+//                 block: 'start'
+//             });
+//         }
+//     });
+// });
+
 
 // --- Renewable Boom Chart (Enhanced) ---
 const chartCanvas = document.getElementById('renewableChart');
@@ -133,32 +294,3 @@ if (chartCanvas) {
         }
     });
 }
-
-
-// // --- Portfolio Auto-Slider ---
-// const track = document.getElementById('sliderTrack');
-// const slides = document.querySelectorAll('.slide');
-// let currentSlide = 0;
-// const slideInterval = 3000; // Ganti slide setiap 3 detik (3000ms)
-
-// function nextSlide() {
-//     currentSlide++;
-    
-//     // Geser track
-//     track.style.transform = `translateX(-${currentSlide * 100}%)`;
-//     track.style.transition = 'transform 0.5s ease-in-out';
-
-//     // Reset ke awal secara instan jika mencapai slide duplikat terakhir
-//     if (currentSlide >= slides.length - 1) {
-//         setTimeout(() => {
-//             track.style.transition = 'none'; // Matikan transisi agar tidak terlihat 'mundur'
-//             currentSlide = 0;
-//             track.style.transform = `translateX(0)`;
-//         }, 500); // Tunggu transisi selesai (0.5s) baru reset
-//     }
-// }
-
-// // Mulai auto-slide jika elemen slider ada
-// if (track && slides.length > 0) {
-//     setInterval(nextSlide, slideInterval);
-// }

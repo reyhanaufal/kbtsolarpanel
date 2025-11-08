@@ -86,6 +86,12 @@
             <div class="about-image">
                  <img src="https://placehold.co/600x500/064e3b/ffffff?text=Team+Image" alt="About Us">
             </div>
+            <!-- <div class="about-image video-container">
+                <video autoplay loop muted playsinline>
+                    <source src="teamvid.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div> -->
             <div class="about-content">
                 <h2>Building a Brighter Future, Together</h2>
                 <p>Our mission is to accelerate the world's transition to sustainable energy. With a passion for clean energy and a commitment to our customers, we strive to provide the best possible solutions.</p>
@@ -164,66 +170,79 @@
             </div>
         </div>
     </section> -->
-
-<!-- Portfolio Section (Marquee Effect) -->
-<section class="portfolio" id="projects">
-    <div class="container-fluid"> <!-- Gunakan container-fluid agar lebih lebar jika diinginkan -->
+    
+    <section class="portfolio" id="projects">
+    <div class="container-fluid">
         <div class="container">
             <h2>Recent Projects</h2>
-            <p class="section-subtitle">Lihat beberapa instalasi dan proyek terbaru kami.</p>
+            <p class="section-subtitle">Check out some of our latest installations and projects.</p>
         </div>
         
-        <!-- Marquee Container -->
-        <div class="marquee">
-            <div class="marquee-content">
-                <!-- Grup Proyek Asli -->
-                <div class="project-item">
+        <div class="marquee-container" id="marqueeContainer">
+            
+            <div class="marquee-content" id="marqueeContent">
+                
+                <div class="project-item" onclick="openModal('portfolio_1.jpg', 'Residential Solar', 'Instalasi panel surya untuk perumahan hemat energi, mengurangi tagihan listrik hingga 40%.')">
                     <img src="portfolio_1.jpg" alt="Project 1">
                     <div class="project-info">Residential Solar</div>
-                </div>
-                <div class="project-item">
-                    <img src="portfolio_2.jpg" alt="Project 2">
-                    <div class="project-info">Commercial Rooftop</div>
-                </div>
-                <div class="project-item">
-                    <img src="portfolio_3.jpg" alt="Project 3">
-                    <div class="project-info">Solar Farm Maint.</div>
-                </div>
-                <div class="project-item">
-                    <img src="https://placehold.co/350x350/34d399/ffffff?text=Project+4+(Square)" alt="Project 4">
-                    <div class="project-info">Off-Grid Cabin</div>
-                </div>
-                <div class="project-item">
-                    <img src="https://placehold.co/400x300/10b981/ffffff?text=Project+5" alt="Project 5">
-                    <div class="project-info">City Installation</div>
                 </div>
 
-                <!-- DUPLIKAT Grup Proyek (PENTING untuk efek looping mulus) -->
-                <!-- Isinya SAMA PERSIS dengan di atas -->
-                <div class="project-item">
-                    <img src="portfolio_1.jpg" alt="Project 1">
-                    <div class="project-info">Residential Solar</div>
-                </div>
-                <div class="project-item">
+                <div class="project-item" onclick="openModal('portfolio_2.jpg', 'Commercial Rooftop', 'Sistem atap komersial kapasitas 50kWp untuk efisiensi operasional pabrik tekstil.')">
                     <img src="portfolio_2.jpg" alt="Project 2">
                     <div class="project-info">Commercial Rooftop</div>
                 </div>
-                <div class="project-item">
+
+                <div class="project-item" onclick="openModal('portfolio_3.jpg', 'Solar Farm Maint.', 'Layanan pemeliharaan rutin termasuk pembersihan panel dan inspeksi termal untuk ladang surya.')">
                     <img src="portfolio_3.jpg" alt="Project 3">
                     <div class="project-info">Solar Farm Maint.</div>
                 </div>
-                <div class="project-item">
-                    <img src="https://placehold.co/350x350/34d399/ffffff?text=Project+4+(Square)" alt="Project 4">
+
+                <div class="project-item" onclick="openModal('portfolio_4.jpeg', 'Off-Grid Cabin', 'Solusi energi mandiri lengkap dengan baterai untuk lokasi terpencil tanpa akses PLN.')">
+                    <img src="portfolio_4.jpeg" alt="Project 4">
                     <div class="project-info">Off-Grid Cabin</div>
                 </div>
-                <div class="project-item">
-                    <img src="https://placehold.co/400x300/10b981/ffffff?text=Project+5" alt="Project 5">
+
+                <div class="project-item" onclick="openModal('portfolio_5.jpg', 'City Installation', 'Instalasi penerangan jalan umum tenaga surya untuk meningkatkan keamanan taman kota.')">
+                    <img src="portfolio_5.jpg" alt="Project 5">
                     <div class="project-info">City Installation</div>
                 </div>
-            </div>
+                <div class="project-item" onclick="openModal('portfolio_1.jpg', 'Residential Solar', 'Instalasi panel surya untuk perumahan hemat energi, mengurangi tagihan listrik hingga 40%.')">
+                    <img src="portfolio_1.jpg" alt="Project 1">
+                    <div class="project-info">Residential Solar</div>
+                </div>
+                <div class="project-item" onclick="openModal('portfolio_2.jpg', 'Commercial Rooftop', 'Sistem atap komersial kapasitas 50kWp untuk efisiensi operasional pabrik tekstil.')">
+                    <img src="portfolio_2.jpg" alt="Project 2">
+                    <div class="project-info">Commercial Rooftop</div>
+                </div>
+                <div class="project-item" onclick="openModal('portfolio_3.jpg', 'Solar Farm Maint.', 'Layanan pemeliharaan rutin termasuk pembersihan panel dan inspeksi termal untuk ladang surya.')">
+                    <img src="portfolio_3.jpg" alt="Project 3">
+                    <div class="project-info">Solar Farm Maint.</div>
+                </div>
+                <div class="project-item" onclick="openModal('portfolio_4.jpeg', 'Off-Grid Cabin', 'Solusi energi mandiri lengkap dengan baterai untuk lokasi terpencil tanpa akses PLN.')">
+                    <img src="portfolio_4.jpeg" alt="Project 4">
+                    <div class="project-info">Off-Grid Cabin</div>
+                </div>
+                <div class="project-item" onclick="openModal('portfolio_5.jpg', 'City Installation', 'Instalasi penerangan jalan umum tenaga surya untuk meningkatkan keamanan taman kota.')">
+                    <img src="portfolio_5.jpg" alt="Project 5">
+                    <div class="project-info">City Installation</div>
+                </div>
+                </div>
         </div>
     </div>
 </section>
+
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        
+        <img id="modalImage" src="" alt="Project Detail">
+        
+        <div class="modal-text">
+            <h3 id="modalTitle"></h3>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+</div>
 
     <section class="testimonials">
         <div class="container">
