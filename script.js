@@ -272,7 +272,41 @@ function calculateROI() {
         co2Reduction.toFixed(2);
 }
 
+// =========================================
+// NEWSLETTER EMAIL HANDLER
+// =========================================
 
+function handleSubscribe(event) {
+    event.preventDefault(); // Mencegah form reload halaman
+
+    // 1. Ambil email yang diinput user
+    const emailInput = document.getElementById('userEmail').value;
+
+    // 2. Konfigurasi Email Tujuan & Template Pesan
+    const companyEmail ="info@sustainabilityenergyserv.co.id";
+    const subject = "Interest in Sustainable Energy Services"; // Subjek Email
+    
+    // Isi pesan template (Bahasa Inggris sesuai website)
+    // \n digunakan untuk enter/baris baru
+    const bodyMessage = `Hello Sustainable Energy Service Team,
+
+I am interested in your renewable energy solutions and would like to receive latest updates and offers.
+
+Please keep me informed.
+
+My Email: ${emailInput}
+Thank you.`;
+
+    // 3. Buat Link Mailto
+    // encodeURIComponent digunakan agar spasi dan enter terbaca dengan benar di link
+    const mailtoLink = `mailto:${companyEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyMessage)}`;
+
+    // 4. Buka Email Client
+    window.location.href = mailtoLink;
+    
+    // Opsional: Reset form setelah dikirim
+    document.getElementById('userEmail').value = '';
+}
 
 // --- Renewable Boom Chart (Enhanced) ---
 const chartCanvas = document.getElementById('renewableChart');
