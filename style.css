@@ -214,6 +214,28 @@ header {
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
+/* ================================
+   NAVBAR ALIGNMENT FIX
+   ================================ */
+
+/* Prevent nav items from wrapping */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    flex-wrap: nowrap; /* KEY FIX */
+}
+
+/* Ensure button text never breaks */
+.nav-links .btn-nav {
+    white-space: nowrap; /* KEY FIX */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 26px;
+}
+
 /* --- Graph Section --- */
 #renewableChart {
     border-radius: 16px;
