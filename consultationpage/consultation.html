@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Panel Consultation | Sustainable Energy Service</title>
+
+    <!-- Reuse existing assets -->
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+    <div class="container nav-container">
+        <a href="index.html" class="logo">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3V5M5.63604 5.63604L7.05025 7.05025M3 12H5M5.63604 18.364L7.05025 16.9497M12 21V19M18.364 18.364L16.9497 16.9497M21 12H19M18.364 5.63604L16.9497 7.05025"
+                      stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            SUSTAINABLE ENERGY SERVICE
+        </a>
+
+        <div class="hamburger" id="hamburgerBtn">☰</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="#contact" class="btn-nav">Contact Us</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+    <div class="container hero-container">
+        <div class="hero-content">
+            <h1>Solar Panel Consultation</h1>
+            <p>
+                Get expert guidance to determine the most efficient, cost-effective,
+                and sustainable solar energy solution tailored to your property.
+            </p>
+            <div class="hero-buttons">
+                <a href="#consultation-form" class="btn">Book Consultation</a>
+                <a href="#process" class="btn btn-outline">Our Process</a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://placehold.co/600x450/10b981/ffffff?text=Solar+Consultation"
+                 alt="Solar Panel Consultation">
+        </div>
+    </div>
+</section>
+
+<!-- ================= ROI Calculation ================= -->
+<section class="services" id="roi-calculator">
+    <div class="container">
+        <h2>Live Solar ROI Calculator</h2>
+        <p class="section-subtitle">
+            Estimate system size, annual savings, payback period, and carbon reduction
+            based on PLN-aligned assumptions for residential, commercial, and industrial users.
+        </p>
+
+        <div class="services-grid">
+
+            <!-- INPUT CARD -->
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Input Parameters</h3>
+
+                    <label>Customer Type</label>
+                    <select id="customerType">
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="industrial">Industrial</option>
+                    </select>
+
+                    <label>Monthly Electricity Consumption (kWh)</label>
+                    <input type="number" id="monthlyKwh" placeholder="e.g. 1200">
+
+                    <label>Electricity Tariff (IDR / kWh)</label>
+                    <input type="number" id="tariff" value="1500">
+
+                    <label>Installed Cost (IDR / kWp)</label>
+                    <input type="number" id="costPerKwp" value="15000000">
+
+                    <button class="btn" onclick="calculateROI()">Calculate</button>
+                </div>
+            </div>
+
+            <!-- OUTPUT CARD -->
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Results</h3>
+
+                    <p><strong>Recommended System Size:</strong>
+                        <span id="systemSize">–</span> kWp
+                    </p>
+
+                    <p><strong>Annual Energy Production:</strong>
+                        <span id="annualEnergy">–</span> kWh/year
+                    </p>
+
+                    <p><strong>Annual Savings:</strong>
+                        IDR <span id="annualSavings">–</span>
+                    </p>
+
+                    <p><strong>Payback Period:</strong>
+                        <span id="payback">–</span> years
+                    </p>
+
+                    <p><strong>CO₂ Reduction:</strong>
+                        <span id="co2Reduction">–</span> tons/year
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================= PROCESS ================= -->
+<section class="benefits" id="process">
+    <div class="container">
+        <h2>Our Consultation Process</h2>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">📍</div>
+                <h3>Site Assessment</h3>
+                <p>
+                    Evaluation of roof orientation, shading, available area,
+                    and electrical infrastructure to determine feasibility.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">📊</div>
+                <h3>Energy Analysis</h3>
+                <p>
+                    Analysis of your historical electricity usage to estimate
+                    optimal system size and expected savings.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🧮</div>
+                <h3>Cost & ROI Estimation</h3>
+                <p>
+                    Transparent breakdown of investment cost, payback period,
+                    and long-term financial benefits.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= WHY CONSULT ================= -->
+<section class="services" style="background-color:#f9fafb;">
+    <div class="container">
+        <h2>Why Choose Our Consultation?</h2>
+        <p class="section-subtitle">
+            We combine engineering expertise, industry standards, and real-world
+            project experience to deliver reliable recommendations.
+        </p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Certified Engineers</h3>
+                    <p>
+                        Our consultants are experienced in residential,
+                        commercial, and industrial solar installations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Technology-Neutral Advice</h3>
+                    <p>
+                        Recommendations are based on performance and lifecycle value,
+                        not vendor lock-in.
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Regulatory Compliance</h3>
+                    <p>
+                        Guidance aligned with local grid regulations and safety standards.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= FORM ================= -->
+<section class="about" id="consultation-form">
+    <div class="container about-container">
+        <div class="about-content">
+            <h2>Request a Consultation</h2>
+            <p>
+                Fill in your details and our team will contact you to schedule
+                a free initial consultation.
+            </p>
+
+            <form class="newsletter-form" style="flex-direction:column; gap:15px;">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="text" placeholder="Location / City" required>
+                <button type="submit" class="btn">Submit Request</button>
+            </form>
+        </div>
+
+        <div class="about-image">
+            <img src="https://placehold.co/500x500/064e3b/ffffff?text=Expert+Advice"
+                 alt="Expert Solar Consultation">
+        </div>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="contact">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <a href="index.html" class="footer-logo">SUSTAINABLE ENERGY SERVICE</a>
+                <p>
+                    Helping individuals and businesses transition to clean,
+                    efficient, and sustainable energy solutions.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="index.html#services">Installation</a></li>
+                    <li><a href="maintenancepage/maintenance.html">Maintenance</a></li>
+                    <li><a href="consultation.html">Consultation</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Stay informed with renewable energy insights.</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>Copyright © 2025 Sustainable Energy Service. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

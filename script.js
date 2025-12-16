@@ -197,6 +197,82 @@ document.addEventListener('keydown', function(event) {
 //     });
 // });
 
+function calculateROI() {
+
+    const customerType = document.getElementById('customerType').value;
+    const monthlyKwh = parseFloat(document.getElementById('monthlyKwh').value);
+    const tariff = parseFloat(document.getElementById('tariff').value);
+    const costPerKwp = parseFloat(document.getElementById('costPerKwp').value);
+
+    if (isNaN(monthlyKwh) || monthlyKwh <= 0) {
+        alert("Please enter valid monthly energy consumption.");
+        return;
+    }
+
+    /* ================================
+       PLN & TECHNICAL ASSUMPTIONS
+       ================================ */
+
+    // Average solar yield in Indonesia (kWh/kWp/year)
+    const solarYield = 1300;
+
+    // Export factor (PLN net-metering assumption – conservative)
+    const selfConsumptionFactor = {
+        residential: 0.75,
+        commercial: 0.85,
+        industrial: 0.90
+    };
+
+    // CO₂ emission factor Indonesia grid (kg CO2 / kWh)
+    const emissionFactor = 0.82;
+
+    /* ================================
+       LOAD ANALYSIS
+       ================================ */
+
+    const annualLoad = monthlyKwh * 12;
+
+    // Size system to offset ~80% of annual load
+    const systemSize = (annualLoad * 0.8) / solarYield;
+
+    const annualProduction = systemSize * solarYield;
+    const usableEnergy = annualProduction * selfConsumptionFactor[customerType];
+
+    /* ================================
+       FINANCIAL MODEL
+       ================================ */
+
+    const annualSavings = usableEnergy * tariff;
+    const totalInvestment = systemSize * costPerKwp;
+    const paybackPeriod = totalInvestment / annualSavings;
+
+    /* ================================
+       CARBON OFFSET
+       ================================ */
+
+    const co2Reduction = (usableEnergy * emissionFactor) / 1000;
+
+    /* ================================
+       UPDATE UI
+       ================================ */
+
+    document.getElementById('systemSize').textContent =
+        systemSize.toFixed(2);
+
+    document.getElementById('annualEnergy').textContent =
+        annualProduction.toFixed(0);
+
+    document.getElementById('annualSavings').textContent =
+        annualSavings.toLocaleString('id-ID');
+
+    document.getElementById('payback').textContent =
+        paybackPeriod.toFixed(1);
+
+    document.getElementById('co2Reduction').textContent =
+        co2Reduction.toFixed(2);
+}
+
+
 
 // --- Renewable Boom Chart (Enhanced) ---
 const chartCanvas = document.getElementById('renewableChart');

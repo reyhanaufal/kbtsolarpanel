@@ -740,6 +740,115 @@ footer {
     border-top: 1px solid #1f2937;
     font-size: 14px;
 }
+/* ================================
+   SOLAR ROI CALCULATOR (FLEX)
+   ================================ */
+
+#roi-calculator select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M6 8l4 4 4-4' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 16px;
+
+    padding-right: 48px; /* space for icon */
+}
+
+#roi-calculator {
+    background-color: var(--light-bg);
+}
+
+/* Override grid → flex for calculator only */
+#roi-calculator .services-grid {
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+}
+
+/* Cards take equal width */
+#roi-calculator .service-card {
+    flex: 1;
+    display: flex;
+}
+
+/* Card inner layout */
+#roi-calculator .service-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* ----------------
+   FORM ELEMENTS
+   ---------------- */
+
+#roi-calculator label {
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+#roi-calculator input,
+#roi-calculator select {
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 999px;
+    border: 1.5px solid #e5e7eb;
+    font-size: 14px;
+    background-color: var(--white);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+#roi-calculator input:focus,
+#roi-calculator select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.12);
+}
+
+/* Push button to bottom for visual balance */
+#roi-calculator .btn {
+    margin-top: auto;
+    margin-top: 32px;   /* fallback spacing if content is short */
+    align-self: stretch;
+}
+
+/* ----------------
+   RESULTS STYLING
+   ---------------- */
+
+#roi-calculator .service-content p {
+    margin-bottom: 14px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+#roi-calculator .service-content strong {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+#roi-calculator span {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* ----------------
+   RESPONSIVE
+   ---------------- */
+
+@media (max-width: 768px) {
+    #roi-calculator .services-grid {
+        flex-direction: column;
+    }
+}
+
 
 /* --- Responsive Design --- */
 @media (max-width: 1024px) {
@@ -782,4 +891,6 @@ footer {
 
     .about-stats { justify-content: center; }
     .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+
+    
 }
