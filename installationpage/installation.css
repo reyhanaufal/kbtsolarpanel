@@ -1,0 +1,170 @@
+/* --- INSTALLATION PAGE CSS --- */
+
+/* Hero Section */
+.inst-hero {
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                url('https://images.unsplash.com/photo-1613665813446-82a78c468206?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0 80px;
+    text-align: center;
+}
+
+.inst-hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.inst-subtitle {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 20px;
+    color: var(--text-dark);
+}
+
+.breadcrumb a {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+/* Process Section */
+.inst-process {
+    background-color: var(--white);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.process-card {
+    background: var(--light-bg);
+    padding: 30px;
+    border-radius: 20px;
+    position: relative;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.process-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.step-number {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--primary-color);
+    opacity: 0.3;
+    margin-bottom: 10px;
+}
+
+.process-card h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: var(--text-dark);
+}
+
+.process-card p {
+    color: var(--text-light);
+    font-size: 15px;
+}
+
+/* Standards Section */
+.inst-standards {
+    background-color: var(--light-bg);
+}
+
+.standards-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.standards-text {
+    flex: 1;
+}
+
+.standards-image {
+    flex: 1;
+}
+
+.standards-image img {
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.standards-list {
+    list-style: none;
+    margin-top: 30px;
+}
+
+.standards-list li {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 35px;
+    color: var(--text-light);
+}
+
+.standards-list li strong {
+    color: var(--secondary-color);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.standards-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    height: 24px;
+    width: 24px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* CTA Section */
+.inst-cta {
+    background-color: var(--secondary-color);
+    color: white;
+    text-align: center;
+}
+
+.inst-cta h2 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.inst-cta p {
+    margin-bottom: 30px;
+    opacity: 0.9;
+    font-size: 18px;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .inst-hero h1 { font-size: 36px; }
+    .standards-content { flex-direction: column; }
+    .standards-image { order: -1; } /* Gambar di atas teks pada mobile */
+}
