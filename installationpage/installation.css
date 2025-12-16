@@ -1,9 +1,4 @@
-/* --- INSTALLATION PAGE PREMIUM STYLES --- */
-
-/* ================= General Utilities ================= */
 :root {
-    /* Menggunakan variabel dari style.css utama Anda, 
-       tapi mendefinisikan ulang untuk memastikan tampilan */
     --primary-color: #10b981;
     --primary-dark: #059669;
     --secondary-color: #1f2937;
@@ -31,7 +26,6 @@
     margin: 0 auto;
 }
 
-/* Animations */
 .fade-in-up {
     opacity: 0;
     transform: translateY(30px);
@@ -44,9 +38,8 @@
 .delay-1 { transition-delay: 0.2s; }
 .delay-2 { transition-delay: 0.4s; }
 
-/* ================= Modern Hero Section ================= */
 .inst-hero-modern {
-    padding: 140px 0 100px; /* Padding atas lebih besar untuk navbar fix */
+    padding: 140px 0 100px;
     background-color: var(--light-bg);
     overflow: hidden;
 }
@@ -113,7 +106,6 @@
     width: 100%;
     border-radius: 30px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-    /* Efek overlap menarik */
     transform: perspective(1000px) rotateY(-5deg) translateX(20px);
     transition: 0.5s ease;
 }
@@ -121,7 +113,6 @@
     transform: perspective(1000px) rotateY(0deg) translateX(0);
 }
 
-/* ================= Timeline Section ================= */
 .inst-timeline-section {
     padding: var(--section-padding);
     background: var(--white);
@@ -133,7 +124,6 @@
     margin: 0 auto;
 }
 
-/* Garis tengah vertikal */
 .timeline::after {
     content: '';
     position: absolute;
@@ -154,11 +144,9 @@
     box-sizing: border-box;
 }
 
-/* Posisi kiri dan kanan */
 .timeline-item.left { left: 0; }
 .timeline-item.right { left: 50%; }
 
-/* Lingkaran konektor */
 .timeline-item::after {
     content: '';
     position: absolute;
@@ -180,7 +168,6 @@
     transform: scale(1.2);
 }
 
-/* Konten Box Timeline */
 .timeline-content {
     padding: 30px;
     background-color: var(--white);
@@ -217,23 +204,20 @@
 }
 .timeline-content p { color: var(--text-light); line-height: 1.6; }
 
-/* ================= Quality Section (Overlap Cards) ================= */
 .inst-quality {
     position: relative;
     padding: 120px 0;
     color: var(--white);
 }
 
-/* Background image parallax-like */
 .quality-bg-image {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    /* Gambar background pekerja/teknologi */
     background: linear-gradient(rgba(31, 41, 55, 0.85), rgba(31, 41, 55, 0.9)),
                 url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Efek parallax sederhana */
+    background-attachment: fixed;
     z-index: -1;
 }
 
@@ -245,8 +229,7 @@
 }
 
 .quality-card {
-    background: rgba(255, 255, 255, 0.05); /* Semi transparan */
-    backdrop-filter: blur(10px); /* Efek kaca buram (modern) */
+    background: rgba(255, 255, 255, 0.05);
     padding: 40px 30px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -272,7 +255,6 @@
 }
 .quality-card p { color: rgba(255, 255, 255, 0.8); }
 
-/* ================= Final CTA ================= */
 .inst-cta-final {
     padding: 80px 0;
     background-color: var(--white);
@@ -304,7 +286,7 @@
 
 .btn-primary, .btn-outline-dark {
     padding: 15px 35px;
-    border-radius: 12px; /* Tombol lebih bulat */
+    border-radius: 12px;
     font-weight: 600;
     transition: 0.3s;
     text-decoration: none;
@@ -336,17 +318,16 @@
 .icon-btn i { margin-right: 10px; font-size: 20px; }
 
 
-/* ================= RESPONSIVE DESIGN ================= */
 @media (max-width: 968px) {
     .hero-wrapper { flex-direction: column; text-align: center; gap: 40px; }
     .hero-text h1 { font-size: 36px; }
     .hero-badges { justify-content: center; }
     .hero-image img { transform: none; }
     
-    .timeline::after { left: 31px; } /* Geser garis ke kiri */
+    .timeline::after { left: 31px; }
     .timeline-item { width: 100%; padding-left: 70px; padding-right: 20px; }
     .timeline-item.right { left: 0%; }
-    .timeline-item::after { left: 21px; } /* Geser titik ke kiri */
+    .timeline-item::after { left: 21px; }
     .timeline-item.right::after { left: 21px; }
 }
 
