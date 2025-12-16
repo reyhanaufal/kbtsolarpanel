@@ -79,6 +79,34 @@ img {
 section {
     padding: 80px 0;
 }
+.btn-white {
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-white:hover {
+    background-color: #f0fdf4;
+    transform: scale(1.05);
+}
+
+.btn-outline-white {
+    background-color: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-outline-white:hover {
+    background-color: var(--white);
+    color: var(--secondary-color);
+}
 
 /* --- Header / Navbar --- */
 header {
@@ -908,6 +936,35 @@ footer {
     #roi-calculator .services-grid {
         flex-direction: column;
     }
+}
+
+/* ----------------
+   Consultation Contact
+   ---------------- */
+
+/* 4. CTA Section */
+.con-cta {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 80px 0;
+}
+
+.con-cta h2 {
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.con-cta p {
+    margin-bottom: 40px;
+    opacity: 0.9;
+    font-size: 18px;
+}
+
+.con-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
 
 
