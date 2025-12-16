@@ -818,25 +818,86 @@ footer {
     align-self: stretch;
 }
 
-/* ----------------
-   RESULTS STYLING
-   ---------------- */
+/* ================================
+   ROI RESULTS – CLEAN VISUAL
+   ================================ */
 
-#roi-calculator .service-content p {
-    margin-bottom: 14px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--text-dark);
+#roi-calculator .service-card:last-child {
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #f9fafb 100%
+    );
 }
 
-#roi-calculator .service-content strong {
-    font-weight: 600;
+/* Result rows */
+#roi-calculator .service-card:last-child .service-content p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 0;
+    margin: 0;
+
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 15px;
+}
+
+/* Remove border from last item */
+#roi-calculator .service-card:last-child .service-content p:last-child {
+    border-bottom: none;
+}
+
+/* Labels */
+#roi-calculator .service-card:last-child strong {
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+/* Values */
+#roi-calculator .service-card:last-child span {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Emphasize payback period slightly */
+#roi-calculator #payback {
     color: var(--secondary-color);
 }
 
-#roi-calculator span {
-    font-weight: 700;
-    color: var(--primary-color);
+/* Result rows expand evenly */
+#roi-calculator .roi-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 0;
+    border-bottom: 1px solid #e5e7eb;
+    flex: 1; /* KEY: vertical balance */
+}
+
+#roi-calculator .roi-row:last-child {
+    border-bottom: none;
+}
+#roi-calculator .service-card:last-child {
+    display: flex;
+}
+
+#roi-calculator .service-card:last-child .service-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* KEY FIX */
+    height: 100%;
+}
+/* Result footer anchor */
+.roi-footer {
+    margin-top: 20px;
+    padding-top: 12px;
+    border-top: 1px dashed #e5e7eb;
+    font-size: 13px;
+    color: var(--text-light);
+    text-align: right;
 }
 
 /* ----------------
